@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClienteModel;
 use App\Models\PedidoModel;
 use App\Models\ProdutoModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class CarrinhoController extends Controller
@@ -21,21 +23,77 @@ class CarrinhoController extends Controller
     }
 
     public function index() {
-        $produtos = null;
-
-        foreach($this->pedidos as $pedido) {
-            $produtos = $this->produtos->where("idProduto", $pedido->idProduto)->get();
+        $login = Session::get('login');
+        if(!$login) {
+            return redirect()->route('login');
         }
 
-        return view('carrinho', compact('produtos'));
+        $produtos = DB::table('tbproduto')
+            ->join('tbpedido', 'tbproduto.idProduto', '=', 'tbpedido.idProduto')
+            ->select('tbproduto.*', 'tbpedido.*')
+            ->where('tbpedido.idStatusPedido', 1)
+            ->get();
+
+
+        return view('carrinho', compact('login', 'produtos'));
     }
 
     public function adicionar($id) {
+        $login = Session::get('login');
+        if(!$login) {
+            return redirect()->route('login')->withErrors('Precisa estar logado para comprar');
+        }
+
+
         $pedido = $this->pedidos->create([
             'idCliente' => Session::get('id'),
-            'idProduto' => $id
+            'idProduto' => $id,
+            'idStatusPedido' => 1
         ]);
 
-        return $pedido;
+        return redirect()->route('carrinho');
+    }
+
+    public function comprar(Request $request) {
+        $login = Session::get('login');
+        if(!$login) {
+            return redirect()->route('login')->withErrors('Precisa estar logado para comprar');
+        }
+
+
+        $cliente = ClienteModel::where('emailCliente', $login)->first();
+
+        $pedidos = PedidoModel::where('idCliente', $cliente->idCliente)
+                    ->where('idStatusPedido', 1)
+                    ->get();
+
+        $atualizado = '';
+
+        foreach($pedidos as $pedido) {
+            $atualizado = PedidoModel::where('idPedido', $pedido->idPedido)->update([
+                'idStatusPedido' => 2
+            ]);
+        }
+
+        if($atualizado == '') {
+            return redirect()->back();
+        }
+
+        return redirect()->back()->with('success', 'Deu boa arrombido');   
+    }
+
+    public function limpar() {
+        $login = Session::get('login');
+        if(!$login) {
+            return redirect()->route('login')->withErrors('Precisa estar logado para comprar');
+        }
+
+        $cliente = ClienteModel::where('emailCliente', $login)->first();
+
+        $pedidos = PedidoModel::where('idCliente', $cliente->idCliente)
+                    ->where('idStatusPedido', 1)
+                    ->delete();
+
+        return redirect()->back();
     }
 }

@@ -13,7 +13,7 @@
 </div>
 <?php endif; ?>
 
-
+<hr>
 
 <!-- MODAL DO CREATE  -->
 <div class="modal fade modal " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -17,13 +17,16 @@ class CategoriaSeed extends Seeder
     {
         DB::table('tbcategoria')->insert(
             array([
-                'categoria' => 'Calça'
+                'categoria' => 'Disco'
             ],
             [
-                'categoria' => 'Camiseta'
+                'categoria' => 'Fita K7'
             ],
             [
-                'categoria' => 'Bermuda'
+                'categoria' => 'CD'
+            ],
+            [
+                'categoria' => 'Roupas'
             ]
             )
         );

@@ -26,10 +26,10 @@ class PagesController extends Controller
 
         if(!empty($texto)) {
             if(isset($radio)) {
-                $produtos = ProdutoModel::where('produto','LIKE', '%'.$texto.'%')->where('idCategoria', $radio)->get();
+                $produtos = ProdutoModel::where('nomeProduto','LIKE', '%'.$texto.'%')->where('idCategoria', $radio)->get();
             }
             else {
-                $produtos = ProdutoModel::where('produto','LIKE', '%'.$texto.'%')->get();
+                $produtos = ProdutoModel::where('nomeProduto','LIKE', '%'.$texto.'%')->get();
             }
         }
         else if(isset($radio)) {
@@ -37,18 +37,5 @@ class PagesController extends Controller
         }
 
         return view('produtos-clientes', compact('login', 'produtos', 'categorias'));
-    }
-
-    public function resetar() {
-        $login = Session::get('login');
-        if(!$login) {
-            return redirect('/');
-        }
-
-        $produtos = ProdutoModel::all();
-        $categorias = CategoriaModel::all();
-
-        return view('produtos-clientes', compact('produtos', 'categorias'));
-
     }
 }

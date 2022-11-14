@@ -1,5 +1,8 @@
 body {
-    background-color: #1C3879;
+    background-image: url('../img/teste.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     font-size: 1.6rem;
     font-family: "Open Sans", sans-serif;
     color: #000000;
@@ -108,7 +111,7 @@ body {
   input[type="submit"] {
     border: none;
     display: block;
-    background-color: #1C3879;
+    background-color: #080808;
     color: #fff;
     font-weight: bold;
     text-transform: uppercase;
@@ -122,7 +125,7 @@ body {
     text-align: center;
   }
   input[type="submit"]:hover {
-    background-color: #607EAA;
+    background-color: #202020;
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
   }

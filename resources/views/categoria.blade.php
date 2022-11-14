@@ -6,7 +6,8 @@
 
 <div class="texto">
 <h1>Categorias</h1>
-</div>,
+</div>
+<hr>
 
 
 @if($errors->any())
@@ -16,6 +17,7 @@
 @endif
 
 
+<button type="button" class="btn btn-success btn btn-custom" data-bs-toggle="modal" data-bs-target="#exampleModal">Cadastrar</button>
 
 <!-- MODAL DO CREATE  -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -119,6 +121,5 @@
     
 </tbody>
 </table>
-<button type="button" class="btn btn-success btn btn-custom" data-bs-toggle="modal" data-bs-target="#exampleModal">Cadastrar</button>
 
 @endsection

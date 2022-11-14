@@ -24,7 +24,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PagesController::class, 'index'])->name('index');
 Route::get('produtos', [PagesController::class, 'produtos'])->name('produtos-clientes');
 Route::post('produtos', [PagesController::class, 'produtos'])->name('produtos-clientes');
-Route::get('resetar', [PagesController::class, 'resetar'])->name('resetar');
+Route::get('resetar', function() {
+    return redirect()->route('produtos-clientes');
+})->name('resetar');
 
 Route::get('conta', [ContaController::class, 'index'])->name('conta');
 
@@ -43,8 +45,8 @@ Route::resource('produto', ProdutoController::class);
 Route::resource('cliente', ClienteController::class);
 
 
-
-
-
 Route::get('carrinho', [CarrinhoController::class, 'index'])->name('carrinho');
+Route::post('comprar', [CarrinhoController::class, 'comprar'])->name('comprar');
+Route::get('limpar-carrinho', [CarrinhoController::class, 'limpar'])->name('limpar-carrinho');
+
 Route::post('addProdutoCarrinho/{id}', [CarrinhoController::class, 'adicionar'])->name('addProdutoCarrinho');

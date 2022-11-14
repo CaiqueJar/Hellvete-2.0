@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'hellvete'; /*a name to be used later*/
+    src: url('../font/fontdoida.ttf'); /*URL to font*/
+}
+
 .bg-custom {
     background-color: #080808;
 }
@@ -12,4 +17,5 @@ body {
 
 .navbar-brand {
     color: white;
+    font-family: 'hellvete';
 }

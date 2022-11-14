@@ -9,6 +9,7 @@
         <!-- Links -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
         <link href="{{ asset('css/clientes.css') }}" rel="stylesheet">
+        <link rel="icon" href="{{ asset('img/icon.png') }}">
         @yield('css')
         {{-- Scripts --}}
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
@@ -19,8 +20,9 @@
         <nav class="navbar navbar-expand-lg bg-custom">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ route('index') }}">
+                    Hell
                     <img src="{{ asset('img/icon.png') }}" alt="Bootstrap" width="35" height="35">
-                    Hellvete
+                    vete
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -34,7 +36,7 @@
                 <ul class="navbar-nav ms-auto">
                     @if($login)
                         <li class="nav-item">
-                            <a class="navbar-brand" href="{{ route('conta') }}">
+                            <a class="nav-link" href="{{ route('conta') }}">
                             <img src="{{ asset('img/user.png') }}" width="30" height="30">
                             Conta
                             </a>

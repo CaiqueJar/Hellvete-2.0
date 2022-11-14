@@ -6,7 +6,8 @@
 
 <div class="texto">
 <h1>Categorias</h1>
-</div>,
+</div>
+<hr>
 
 
 <?php if($errors->any()): ?>
@@ -17,6 +18,7 @@
 <?php endif; ?>
 
 
+<button type="button" class="btn btn-success btn btn-custom" data-bs-toggle="modal" data-bs-target="#exampleModal">Cadastrar</button>
 
 <!-- MODAL DO CREATE  -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -120,7 +122,6 @@
     
 </tbody>
 </table>
-<button type="button" class="btn btn-success btn btn-custom" data-bs-toggle="modal" data-bs-target="#exampleModal">Cadastrar</button>
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/caique/Desktop/outfit-store-main/resources/views/categoria.blade.php ENDPATH**/ ?>

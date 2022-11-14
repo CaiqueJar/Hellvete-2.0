@@ -14,6 +14,7 @@
     {{ $errors->first() }}
 </div>
 @endif
+<hr>
 
 
 <div class="tabela">
@@ -39,7 +40,6 @@
         <td>{{ $cliente->cpfCliente }}</td>
         <td>{{ $cliente->emailCliente }}</td>
         <td>{{ $cliente->celularCliente }}</td>
-
     </tr>
     @endforeach
 </tbody>

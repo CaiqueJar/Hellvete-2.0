@@ -5,18 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PedidoModel extends Model
+class StatusPedido extends Model
 {
     use HasFactory;
 
-    protected $table = "tbpedido";
+    protected $table = "tbstatuspedido";
 
     protected $fillable = [
-        'idPedido',
-        'idCliente',
-        'idProduto',
         'idStatusPedido',
+        'status'
     ];
-
-    public $timestamps = false;
 }

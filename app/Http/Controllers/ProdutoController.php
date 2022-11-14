@@ -71,6 +71,7 @@ class ProdutoController extends Controller
             'nomeProduto' => $request->produto,
             'valorProduto' => $request->valor,
             'fotoProduto' => $imageName,
+            'descricaoProduto' => $request->descricao,
             'idCategoria' => $request->categoria
         ]);
 
@@ -111,8 +112,8 @@ class ProdutoController extends Controller
     public function update(Request $request, $id)
     {
         $this->produtos->where('idProduto', $id)->update([
-            'produto' => $request->produto,
-            'valor' => $request->valor,
+            'nomeProduto' => $request->produto,
+            'valorProduto' => $request->valor,
             'idCategoria' => $request->categoria
         ]);
         return redirect()->back();
