@@ -50,3 +50,6 @@ Route::post('comprar', [CarrinhoController::class, 'comprar'])->name('comprar');
 Route::get('limpar-carrinho', [CarrinhoController::class, 'limpar'])->name('limpar-carrinho');
 
 Route::post('addProdutoCarrinho/{id}', [CarrinhoController::class, 'adicionar'])->name('addProdutoCarrinho');
+
+
+Route::get('deletar-conta/{id}', [ContaController::class, 'deletar'])->name('deletar-conta');

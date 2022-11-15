@@ -31,7 +31,7 @@ class ProdutoController extends Controller
             return redirect('/');
         }
 
-        $produtos = ProdutoModel::all();
+        $produtos = ProdutoModel::paginate(5);
         $categorias = CategoriaModel::all();
         return view('produto', compact('produtos', 'categorias'));
     }

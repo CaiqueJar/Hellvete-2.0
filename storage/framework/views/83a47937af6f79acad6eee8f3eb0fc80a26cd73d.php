@@ -15,6 +15,7 @@
 
 </div>
 <?php endif; ?>
+<hr>
 
 
 <div class="tabela">

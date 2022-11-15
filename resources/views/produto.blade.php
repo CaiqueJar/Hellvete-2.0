@@ -20,9 +20,9 @@
         @csrf
         <div class="modal-dialog">
             <div class="modal-content">
-            <div class="modal-header modal-custom">
+            <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Cadastrar um novo produto?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-fechar" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body modal-custom">
                 <div class="mb-3">
@@ -132,6 +132,7 @@
         </form>
     </div>
 
+
     
 
 
@@ -164,6 +165,7 @@
     
 </tbody>
 </table>
+{{ $produtos->links() }}
 
     
 @endsection

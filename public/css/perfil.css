@@ -1,0 +1,55 @@
+body {
+    overflow: hidden; /* Hide scrollbars */
+    background-color: #b3b3b3;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+}
+
+.info {
+    background-color: white;
+    width: 20vw;
+    height: 72vh;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.perfil-image {
+    margin-left: auto;
+    margin-right: auto;
+    width: calc(100 / 50vw);
+}
+
+.perfil-image img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.descricao {
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.gap-2 {
+    margin-top: 15px;
+}
+
+.pedidos {
+    width: 68vw;
+    height: 72vh;
+    border-radius: 10px;
+    padding: 20px;
+
+    background-color: white;
+}
+
+.produto-img {
+    width: 6em;
+}

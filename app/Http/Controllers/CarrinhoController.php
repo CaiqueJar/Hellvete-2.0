@@ -28,10 +28,13 @@ class CarrinhoController extends Controller
             return redirect()->route('login');
         }
 
+        $cliente = ClienteModel::where('emailCliente', $login)->first();
+
         $produtos = DB::table('tbproduto')
             ->join('tbpedido', 'tbproduto.idProduto', '=', 'tbpedido.idProduto')
             ->select('tbproduto.*', 'tbpedido.*')
             ->where('tbpedido.idStatusPedido', 1)
+            ->where('idCliente', $cliente->idCliente)
             ->get();
 
 
@@ -79,7 +82,7 @@ class CarrinhoController extends Controller
             return redirect()->back();
         }
 
-        return redirect()->back()->with('success', 'Deu boa arrombido');   
+        return redirect()->back()->with('success', 'Deu boa');   
     }
 
     public function limpar() {
