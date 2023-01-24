@@ -16,6 +16,7 @@ class PedidoModel extends Model
         'idCliente',
         'idProduto',
         'idStatusPedido',
+        'dataPedido'
     ];
 
     public $timestamps = false;

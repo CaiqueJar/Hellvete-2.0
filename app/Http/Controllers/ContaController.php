@@ -2,16 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoriaModel;
 use App\Models\ClienteModel;
 use App\Models\PedidoModel;
+use App\Models\ProdutoModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+
+use PDF;
 
 class ContaController extends Controller
 {
     public function index() {
         $login = Session::get('login');
+        if($login == "admin") {
+            return redirect()->route('dashboardPage');
+        }
 
         $cliente = ClienteModel::where('emailCliente', Session::get('login'))->first();
 
@@ -21,6 +28,7 @@ class ContaController extends Controller
             ->where('tbpedido.idStatusPedido', 2)
             ->where('idCliente', $cliente->idCliente)
             ->paginate(4);
+
 
         return view('conta', compact('login', 'cliente', 'pedidos'));
     }
@@ -36,4 +44,16 @@ class ContaController extends Controller
         Session::forget('login');
         return redirect()->route('index');
     }
+
+    public function pdf() {
+        // retreive all records from db
+      $produtos = ProdutoModel::all();
+      $categorias = CategoriaModel::all();
+
+      $pdf = PDF::loadView('produtos-pdf', compact('produtos', 'categorias'));
+      // download PDF file with download method
+      return $pdf->download('pdf_file.pdf');
+    }
+
+    
 }

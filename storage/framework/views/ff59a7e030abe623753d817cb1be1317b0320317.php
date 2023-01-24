@@ -11,12 +11,21 @@
         var calcas = JSON.parse('<?php echo json_encode($calcas); ?>');
         var bermudas = JSON.parse('<?php echo json_encode($bermudas); ?>');
 
-        var data = google.visualization.arrayToDataTable([
-            ['Task', 'Hours per Day'],
-            ['Camisetas',     camisetas],
-            ['Calça',      calcas],
-            ['Bermudas',  bermudas],
+        var categorias = JSON.parse('<?php echo json_encode($categorias); ?>');
+
+        var produtos = JSON.parse('<?php echo json_encode($cont_produtos); ?>');
+
+        var data = new google.visualization.DataTable();
+        
+        data.addColumn('string', 'Task');
+        data.addColumn('number', 'Hours per Day');
+
+        for(var i = 0; i < produtos.length; i++) {
+            data.addRows([
+            [categorias[i].categoria, produtos[i]]
         ]);
+        }
+
 
         var options = {
             title: 'Produtos'

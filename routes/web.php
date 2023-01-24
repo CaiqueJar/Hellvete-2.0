@@ -53,3 +53,5 @@ Route::post('addProdutoCarrinho/{id}', [CarrinhoController::class, 'adicionar'])
 
 
 Route::get('deletar-conta/{id}', [ContaController::class, 'deletar'])->name('deletar-conta');
+
+Route::get('/pdf', [ContaController::class, 'pdf'])->name('pdf');

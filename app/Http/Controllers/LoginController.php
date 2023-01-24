@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoriaModel;
 use App\Models\ClienteModel;
+use App\Models\PedidoModel;
 use App\Models\ProdutoModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -21,12 +24,21 @@ class LoginController extends Controller
             return redirect('/');
         }
         
-        $produtos = ProdutoModel::all();
-        $camisetas = ProdutoModel::where("idCategoria", 2)->count();
-        $calcas = ProdutoModel::where("idCategoria", 1)->count();
-        $bermudas = ProdutoModel::where("idCategoria", 3)->count();
+        $cont_produtos = array();
 
-        return view('dashboard', compact('camisetas', 'calcas', 'bermudas'));
+        $categorias = CategoriaModel::all();
+        $produtos = ProdutoModel::all();
+        $pedidos = $this->getGraphPedidosValor();
+
+        $graficoMes = $this->getGraphRestaurantesMes();
+
+        foreach($categorias as $categoria) {
+            $quantidade = $produtos->where('idCategoria', $categoria->idCategoria)->count();
+            array_push($cont_produtos, $quantidade);
+        }
+
+
+        return view('dashboard', compact('categorias', 'cont_produtos', 'pedidos', 'graficoMes'));
     }
 
     public function autenticar(Request $request) {
@@ -90,5 +102,61 @@ class LoginController extends Controller
 
     public function registroPage() {
         return view('registro');
+    }
+
+    public function getGraphRestaurantesMes() {
+        $mesAtual = date('m');
+
+        if(($mesAtual - 6) < 0)
+        {
+            $aux = 12 - (6 - $mesAtual);
+        }
+        else{
+            $aux = $mesAtual - 6;
+        }
+
+        $resultado = [];
+        $meses = ['Janeiro','Fevereiro', 'Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+        
+        while($aux != $mesAtual){
+
+            array_push($resultado, $meses[$aux]);
+
+            if($aux == 11) $aux = 0;
+            else $aux++;
+        }
+
+        return $resultado;
+    }
+
+    public function getGraphPedidosValor() {
+        $mesAtual = date('m');
+
+        if(($mesAtual - 6) < 0)
+        {
+            $aux = 12 - (6 - $mesAtual);
+        }
+        else{
+            $aux = $mesAtual - 6;
+        }
+        $resultado = [];
+        
+        while($aux <= $mesAtual){
+            array_push($resultado,  $this->getPedidospMes($aux + 1));
+            $aux++;
+        }
+
+        return $resultado;
+    }
+
+    private function getPedidospMes($mes)
+    {
+        $query = DB::table('tbpedido')
+            ->select(DB::raw('COUNT(idPedido) AS total'))
+            ->where(DB::raw('MONTH(dataPedido)'), '=', $mes)
+            ->where('idStatusPedido', '=', "2")
+            ->first()->total;
+
+            return $query;
     }
 }

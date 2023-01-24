@@ -24,3 +24,10 @@ Route::get('categoria', [ApiController::class, 'getCategoria']);
 Route::get('categoria/{id}', [ApiController::class, 'getCategoriaById']);
 Route::get('categoriabyname/{nome}', [ApiController::class, 'getCategoriaByNome']);
 Route::get('total-categorias', [ApiController::class, 'getTotCategoria']);
+
+
+
+Route::get('produto', [ApiController::class, 'getProduto']);
+Route::get('produto/{id}', [ApiController::class, 'getProdutoById']);
+Route::get('produtobyname/{nome}', [ApiController::class, 'getProdutoByNome']);
+Route::get('total-produtos', [ApiController::class, 'getTotProduto']);

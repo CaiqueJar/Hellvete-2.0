@@ -22,48 +22,12 @@
 
 </head>
 <body>
-    {{--
-    <nav class="navbar navbar-expand-lg  navbar navbar-custom">
-        <div class="container-fluid">
-        <a class="navbar-brand" href="{{ route('dashboardPage') }}">
-                <img src="{{ asset('img/p20.png') }}" alt="Bootstrap" width="35" height="35">
-                Administrativo
-            </a>
-            
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                <a class="nav-link" href="{{ route('categoria.index') }}">Categorias</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="{{ route('produto.index') }}">Produtos</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">Pedidos</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href=" {{ route('cliente.index') }} ">Clientes</a>
-                </li>
-                
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('logout') }}">Sair <img src="{{ asset('img/logout.png') }}" width="20px"></a>
-                </li>
-            </ul>
-
-            </div>
-        </div>
-    </div>
-    </nav>
-
-    @yield('conteudo')
-    --}}
 
     <div class="sidebar close">
         <div class="logo-details">
-            <img src="{{ asset('img/icon.png') }}" class="logo-image">
+            <a href="{{ route('dashboardPage') }}">
+                <img src="{{ asset('img/icon.png') }}" class="logo-image">
+            </a>
             <h1 class="logo-name">Hellvete</h1>
         </div>
         <ul class="nav-links">

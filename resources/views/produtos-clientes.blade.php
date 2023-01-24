@@ -42,7 +42,7 @@
         </div>
         <div class="col-sm-9">
             <div class="conteudo">
-                <h1>Produtos do capiroto</h1>
+                <h1>Produtos</h1>
                 <hr>
                 
                 <div class="scrolar">

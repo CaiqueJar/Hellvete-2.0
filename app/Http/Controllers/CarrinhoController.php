@@ -6,6 +6,7 @@ use App\Models\ClienteModel;
 use App\Models\PedidoModel;
 use App\Models\ProdutoModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -51,10 +52,15 @@ class CarrinhoController extends Controller
         $pedido = $this->pedidos->create([
             'idCliente' => Session::get('id'),
             'idProduto' => $id,
-            'idStatusPedido' => 1
+            'idStatusPedido' => 1,
+            'dataPedido' => Date::now()
         ]);
 
-        return redirect()->route('carrinho');
+        if($pedido) {
+            return redirect()->route('carrinho');
+
+        }
+        return redirect()->back()->withErrors("deu ruim");
     }
 
     public function comprar(Request $request) {

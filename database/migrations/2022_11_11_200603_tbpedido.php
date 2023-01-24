@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('idProduto');
             $table->unsignedInteger('idCliente');
             $table->unsignedInteger('idStatusPedido');
+            $table->date('dataPedido');
 
             $table->foreign('idProduto')->references('idProduto')->on('tbproduto');
             $table->foreign('idCliente')->references('idCliente')->on('tbcliente');
